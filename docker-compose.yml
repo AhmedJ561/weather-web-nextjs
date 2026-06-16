@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  weatherscope:
+    build:
+      context: .
+      args:
+        API_KEY: ${NEXT_PUBLIC_OPENWEATHER_API_KEY}
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
