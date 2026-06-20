@@ -64,11 +64,12 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
-      # ✅ FIXED STEP: Secret names now match your GitHub settings image perfectly
+      # ✅ FIXED STEP: Both environment key variants are explicitly passed down to the Next.js build step
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
         env:
-          NEXT_PUBLIC_OPENWEATHER_KEY: ${{ secrets.NEXT_PUBLIC_OPENWEATHER_API_KEY }}
+          NEXT_PUBLIC_OPENWEATHER_API_KEY: ${{ secrets.NEXT_PUBLIC_OPENWEATHER_API_KEY }}
+          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
